@@ -1,12 +1,12 @@
 {
   "name": "file-watch-hmr",
   "version": "0.1.0",
-  "description": "I18Next HMR webpack plugin that allows reloading translation resources on the client & the server.",
+  "description": "File Watch HMR webpack plugin that allows reloading translation resources on the client & the server.",
   "keywords": [
-    "i18next",
     "HMR",
     "webpack",
-    "plugin"
+    "plugin",
+    "watch"
   ],
   "homepage": "https://github.com/felixmosh/i18next-hmr",
   "bugs": "https://github.com/felixmosh/i18next-hmr/issues",
@@ -15,7 +15,7 @@
     "url": "https://github.com/felixmosh/i18next-hmr"
   },
   "license": "MIT",
-  "author": "felixmosh",
+  "author": "kaischlamp",
   "main": "client.js",
   "types": "client.d.ts",
   "scripts": {
@@ -36,6 +36,9 @@
       "(client|server)-hmr\\.js": "<rootDir>/__tests__/utils/preprocessor.js"
     }
   },
+  "dependencies": {
+    "fast-glob": "^3.2.11"
+  },
   "devDependencies": {
     "@types/jest": "^28.1.6",
     "@types/node": "^18.0.6",
@@ -55,8 +58,5 @@
     "github": {
       "release": true
     }
-  },
-  "dependencies": {
-    "fast-glob": "^3.2.11"
   }
 }
