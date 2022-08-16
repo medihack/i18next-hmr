@@ -1,21 +1,21 @@
 {
   "name": "file-watch-hmr",
   "version": "0.1.0",
-  "description": "File Watch HMR webpack plugin that allows reloading translation resources on the client & the server.",
+  "description": "File Watch HMR webpack plugin allows watching for file changes during development on the client or server",
   "keywords": [
     "HMR",
     "webpack",
     "plugin",
     "watch"
   ],
-  "homepage": "https://github.com/felixmosh/i18next-hmr",
-  "bugs": "https://github.com/felixmosh/i18next-hmr/issues",
+  "homepage": "https://github.com/medihack/file-watch-hmr",
+  "bugs": "https://github.com/medihack/file-watch-hmr/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/felixmosh/i18next-hmr"
+    "url": "https://github.com/medihack/file-watch-hmr"
   },
   "license": "MIT",
-  "author": "kaischlamp",
+  "author": "Kai Schlamp",
   "main": "client.js",
   "types": "client.d.ts",
   "scripts": {
