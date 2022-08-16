@@ -1,6 +1,6 @@
 {
-  "name": "i18next-hmr",
-  "version": "1.10.0",
+  "name": "file-watch-hmr",
+  "version": "0.1.0",
   "description": "I18Next HMR webpack plugin that allows reloading translation resources on the client & the server.",
   "keywords": [
     "i18next",
@@ -55,5 +55,8 @@
     "github": {
       "release": true
     }
+  },
+  "dependencies": {
+    "fast-glob": "^3.2.11"
   }
 }

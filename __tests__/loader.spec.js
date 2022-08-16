@@ -2,32 +2,48 @@ const loader = require('../lib/loader');
 
 describe('loader', () => {
   let context;
-  const options = ['en/namespace'];
+  const options = ['app/locales/common.json'];
   const query = {
-    getChangedLang: jest.fn().mockImplementation(() => options),
-    localesDirs: ['locals-dir'],
+    getChangedFiles: jest.fn().mockImplementation(() => options),
+    filesToWatch: ['app/locales/common.json'],
+    foldersToWatch: ['app/locales'],
   };
   const content = `module.exports = '__PLACEHOLDER__';`;
 
   beforeEach(() => {
     context = {
+      addDependency: jest.fn(),
       addContextDependency: jest.fn(),
       query,
     };
   });
 
-  it('should add localesDir as context dependency', () => {
+  it('should add files to watch as context dependency', () => {
     loader.apply(context, [content]);
-    expect(context.addContextDependency).toHaveBeenCalledWith(query.localesDirs[0]);
+    expect(context.addDependency).toHaveBeenCalledWith(query.filesToWatch[0]);
   });
 
-  it('should add all locale dirs as context dependency', () => {
-    query.localesDirs = ['folder1', 'folder2'];
+  it('should add folders to watch as context dependency', () => {
+    loader.apply(context, [content]);
+    expect(context.addContextDependency).toHaveBeenCalledWith(query.foldersToWatch[0]);
+  });
+
+  it('should add all files to watch as dependency', () => {
+    query.filesToWatch = ['app/locales/en/common.json', 'app/locales/en/extra.json'];
     loader.apply(context, [content]);
 
-    expect(context.addContextDependency).toHaveBeenCalledTimes(query.localesDirs.length);
-    expect(context.addContextDependency).toHaveBeenCalledWith(query.localesDirs[0]);
-    expect(context.addContextDependency).toHaveBeenCalledWith(query.localesDirs[1]);
+    expect(context.addDependency).toHaveBeenCalledTimes(query.filesToWatch.length);
+    expect(context.addDependency).toHaveBeenCalledWith(query.filesToWatch[0]);
+    expect(context.addDependency).toHaveBeenCalledWith(query.filesToWatch[1]);
+  });
+
+  it('should add all folders to watch as context dependency', () => {
+    query.foldersToWatch = ['app/locales1', 'app/locales2'];
+    loader.apply(context, [content]);
+
+    expect(context.addContextDependency).toHaveBeenCalledTimes(query.foldersToWatch.length);
+    expect(context.addContextDependency).toHaveBeenCalledWith(query.foldersToWatch[0]);
+    expect(context.addContextDependency).toHaveBeenCalledWith(query.foldersToWatch[1]);
   });
 
   it('should inject an object', () => {

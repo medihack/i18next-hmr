@@ -1,5 +1,5 @@
 export class I18NextHMRPlugin {
-  static addListener(cb: (data: { lang: string; ns: string }) => void): void;
+  static addListener(cb: (file: string) => void): void;
 
-  constructor(options: { localesDir: string; localesDirs: string[] });
+  constructor(options: { files: string[]; folders: [] });
 }
